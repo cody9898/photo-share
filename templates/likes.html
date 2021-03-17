@@ -1,0 +1,11 @@
+<!doctype html>
+
+<a href = '/photo/{{photo_id}}'>Back to Photo Details</a>
+
+<h4>Photo Likes</h4>
+
+<ul>
+    {% for like in likes %}
+    <li><a href='/user/{{like[1]}}'>{{like[2]}} {{like[3]}}</a></li>
+    {% endfor %}
+</ul>

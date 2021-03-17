@@ -1,0 +1,16 @@
+<a href='/profile'>Back To Profile</a>
+
+<h3>Photos You May Like</h3>
+
+{% if empty == true %}
+    No recommendations.
+{% else %}
+    <ul>
+        {% for photo in photos %}
+        <li>Caption: {{photo[2]}}<br>
+            <a href = '/photo/{{photo[1]}}'>Photo Details</a><br>
+            <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}' width="400"/><br>
+        </li>
+        {% endfor %}
+    </ul>
+{% endif %}

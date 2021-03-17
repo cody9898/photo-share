@@ -1,0 +1,23 @@
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+
+<h3>{{owner['first_name']}}'s album "{{album[0]}}"</h3>
+
+<ul>
+    {% if canDelete == true %}
+        <li><a href='/delete_album/{{album[2]}}'>Delete album</a></li>
+    {% endif %}
+    <li><a href='/'>Back to Home</a></li>
+</ul>
+
+<h3> Photos </h3>
+
+<ul>
+{% for photo in photos %}
+
+    <li>Caption: {{photo[2]}}<br>
+    <a href = '/photo/{{photo[1]}}'>Photo Details</a><br>
+    <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}' width="400"/><br></li>
+{% endfor %}
+</ul>

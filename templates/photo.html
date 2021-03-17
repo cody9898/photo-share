@@ -1,0 +1,34 @@
+<!doctype html>
+
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+
+<h4>Photo Details</h4>
+
+<ul>
+    <li>Caption: {{photo['caption']}}</li>
+    <li>Owner: <a href='/user/{{owner}}'>{{photo['first_name']}} {{photo['last_name']}}</a></li>
+    <li>Album: <a href='/album/{{album_id}}'>{{photo['album_name']}}</a></li>
+    <li>{{photo['num_likes']}} likes</li>
+    {% if auth %}
+        {% if liked == true %}
+            <li><a href='/unlike/{{photo_id}}'>Unlike</a></li>
+        {% else %}
+            <li><a href='/like/{{photo_id}}'>Like</a></li>
+        {% endif %}
+    {% endif %}
+    <li><a href='/likes/{{photo_id}}'>Show likes</a></li>
+    <li><a href='/comments/{{photo_id}}'>Show comments</a></li>
+    <li> Tags: 
+        {% for tag in tags %}
+        <a href='/tag_all/{{tag[0]}}'>{{tag[0]}}</a>
+        {% endfor %}
+    </li>
+    {% if canDelete == true %}
+        <li><a href='/delete_photo/{{photo_id}}'>Delete photo</a></li>
+    {% endif %}
+    <li><a href='/'>Back to Home</a></li>
+</ul>
+
+<img src='data:image/jpg;base64, {{ base64.b64encode(data).decode("ascii") }}' width="400"/><br></li>

@@ -1,0 +1,11 @@
+<h3>{{owner['first_name']}}'s Friends</h3>
+
+{% if empty == true %}
+    {{owner['first_name']}} does not have any friends.
+{% else %}
+    <ul>
+        {% for friend in friends %}
+            <li><a href='/user/{{friend[0]}}'>{{friend[1]}} {{friend[2]}}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}

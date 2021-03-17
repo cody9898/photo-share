@@ -1,0 +1,9 @@
+<li><a href='/'>Back to Home</a></li>
+
+<h3> Top 10 Users </h3>
+
+<ul>
+    {% for tup in top10 %}
+    <li><a href='/user/{{tup[0][0]}}'>{{tup[0][1]}} {{tup[0][2]}}</a> (Score = {{tup[1]}})</li>
+    {% endfor %}
+</ul>

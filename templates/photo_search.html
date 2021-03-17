@@ -1,0 +1,24 @@
+<li><a href='/'>Back to Home</a></li>
+
+<h3> Search Photos </h3>
+
+<form method="post" enctype="multipart/form-data" action="/photo_search">
+    <label for="query">Enter name of tag to search </label>
+    <input type="text" name="query" required='true' /><br />
+
+    <input type="submit" value="Search" />
+</form>
+
+{% if message %}
+  <h4>{{message}}</h4>
+{% endif %}
+
+{% if photos %}
+    <ul>
+    {% for photo in photos %}
+        <li>Caption: {{photo[2]}}<br>
+        <a href = '/photo/{{photo[1]}}'>Photo Details</a><br>
+        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}' width="400"/><br></li>
+    {% endfor %}
+    </ul>
+{% endif %}

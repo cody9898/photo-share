@@ -1,0 +1,17 @@
+<head>
+    <title>Create album!</title>
+</head>
+    <body>
+        {% if message %}
+        <h4>{{message}}!</h4>
+        {% endif %}
+        <div class="title">
+            <h1>Create a new album</h1>
+        </div>
+            <form method="post" enctype="multipart/form-data" action="/create_album">
+                <label for="album_name">Album name:</label>
+                <input type="text" name="album_name" required='true' /><br />
+
+                <input type="submit" value="Create" />
+            </form>
+    </body>

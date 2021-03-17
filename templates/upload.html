@@ -1,0 +1,21 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<head>
+    <title>Upload a photo!</title>
+</head>
+    <body>
+        <div class="title">
+            <h3>Upload a photo to your album "{{album[1]}}"</h3>
+        </div>
+            <form method="post" enctype="multipart/form-data" action="/upload/{{album[0]}}">
+                <label for="photo">Select photo:</label>
+                <input type="file" name="photo" required='true' /><br />
+
+                <label for="caption">Please caption:</label>
+                <input type="text" name="caption" required='true' /><br />
+
+                <label for="tags">Enter all tags, separated by commas (tag1,tag2,ta3):</label>
+                <input type="text" name="tags" required='false' /><br />
+
+                <input type="submit" value="Upload" />
+            </form>
+    </body>

@@ -1,0 +1,13 @@
+<a href='/profile'>Back To Profile</a>
+
+<h3>Friend Recommendations</h3>
+
+{% if empty == true %}
+    No recommendations.
+{% else %}
+    <ul>
+        {% for user in fof %}
+            <li><a href='/user/{{user[0][0]}}'>{{user[0][1]}} {{user[0][2]}}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}

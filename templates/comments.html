@@ -1,0 +1,37 @@
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+
+<a href = '/photo/{{photo_id}}'>Back to Photo Details</a>
+
+<h3>Photo Comments</h3>
+
+{% if auth %}
+<form method="post" enctype="multipart/form-data" action="/comments/{{photo_id}}">
+    <label for="comment_text">Post a new comment:</label>
+    <input type="text" name="comment_text" required='true' /><br />
+
+    <input type="submit" value="Post" />
+</form>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data" action="/comments/{{photo_id}}">
+    <label for="query">Search comments </label>
+    <input type="text" name="query" required='true' /><br />
+
+    <input type="submit" value="Search" />
+</form>
+
+<a href="/comments/{{photo_id}}"> Show all comments </a>
+
+<ul>
+    {% for comment in comments %}
+    <li>
+        Comment author: <a href='/user/{{comment[2]}}'>{{comment[3]}} {{comment[4]}}</a> <br>
+        {% if comment[2] == current_user %}
+        <a href='/delete_comment/{{comment[0]}}'>Delete comment</a><br>
+        {% endif %}
+        Comment text: {{comment[1]}}
+    </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,21 @@
+<h3>Photos with tag "{{tag_name}}"</h3>
+
+<ul>
+    {% if showAll == true %}
+        <li>Currently showing all photos with this tag. <a href='/tag_mine/{{tag_name}}'>Show only your photos</a></li>
+    {% else %}
+        <li>Currently showing only your photos with this tag. <a href='/tag_all/{{tag_name}}'>Show all photos</a></li>
+    {% endif %}
+    <li><a href='/'>Back to Home</a></li>
+</ul>
+
+<h3> Photos </h3>
+
+<ul>
+{% for photo in photos %}
+
+    <li>Caption: {{photo[2]}}<br>
+    <a href = '/photo/{{photo[1]}}'>Photo Details</a><br>
+    <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}' width="400"/><br></li>
+{% endfor %}
+</ul>

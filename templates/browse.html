@@ -1,0 +1,38 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<!doctype html>
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+<title>Photoshare</title>
+{% if name %}
+  <h1>Hello, {{ name }}!</h1>
+{% endif %}
+
+{% if loggedIn %}
+<ul>
+    <li><a href='/profile'>Profile</a></li>
+    <li><a href='/select_album'>Upload a photo</a> </li>
+    <li> <a href='/user_search'>Search users</a> </li>
+    <li> <a href='/photo_search'>Search photos</a> </li>
+    <li> <a href='/top10'>Top 10 Users</a> </li>
+    <li><a href='/logout'>Logout</a></li>
+</ul>
+{% else %}
+<p>You should <a href='/login'>login</a> or <a href='/register'>register</a>!</p>
+<li> <a href='/user_search'>Search users</a> </li>
+<li> <a href='/photo_search'>Search photos</a> </li>
+<li> <a href='/top10'>Top 10 Users</a> </li>
+{% endif %}
+
+{% if photos %}
+<h2>Browse photos</h2>
+    <ul>
+    {% for photo in photos %}
+
+        <li>Caption: {{photo[2]}}<br>
+        <a href = '/photo/{{photo[1]}}'>Photo Details</a><br>
+        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}' width="400"/><br></li>
+        
+    {% endfor %}
+    </ul>
+{% endif %}

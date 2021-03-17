@@ -1,0 +1,37 @@
+<!doctype html>
+
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+
+<h4>User profile</h4>
+
+<h1>{{ user['first_name'] }} {{ user['last_name'] }}</h1>
+
+
+<ul>
+    {% if authenticated %}
+        {% if isFriend %}
+            <li> <a href='/remove_friend/{{user_id}}'> Remove Friend </a> </li>
+        {% else %}
+            <li> <a href='/add_friend/{{user_id}}'> Add Friend </a> </li>
+        {% endif %}
+    {% endif %}
+    <li> <a href='/friends/{{user_id}}'> Friends List </a> </li>
+    <li> <a href='/user_albums/{{user_id}}'>Albums</a> </li>
+    <li> Score = {{score}}</li>
+    <li><a href='/'>Back to Home</a></li>
+</ul>
+
+{% if photos %}
+<h2> {{user['first_name']}}s' photos</h2>
+    <ul>
+    {% for photo in photos %}
+
+        <li>Caption: {{photo[2]}}<br>
+        <a href = '/photo/{{photo[1]}}'>Photo Details</a><br>
+        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}' width="400"/><br></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+

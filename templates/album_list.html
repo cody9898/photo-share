@@ -1,0 +1,13 @@
+
+
+<h3>{{owner['first_name']}}'s Albums</h3>
+
+{% if empty == true %}
+    {{owner['first_name']}} does not have any albums.
+{% else %}
+    <ul>
+        {% for album in albums %}
+            <li><a href='/album/{{album[0]}}'>{{album[1]}}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}

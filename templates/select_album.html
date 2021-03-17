@@ -1,0 +1,7 @@
+<h4>Select album to upload new photo:</h4>
+
+<ul>
+    {% for album in albums %}
+        <li><a href='/upload/{{album[0]}}'>{{album[1]}}</a></li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,22 @@
+<li><a href='/'>Back to Home</a></li>
+
+<h3> Search Users </h3>
+
+<form method="post" enctype="multipart/form-data" action="/user_search">
+    <label for="query">Enter name of user to search </label>
+    <input type="text" name="query" required='true' /><br />
+
+    <input type="submit" value="Search" />
+</form>
+
+{% if message %}
+  <h4>{{message}}</h4>
+{% endif %}
+
+{% if users %}
+    <ul>
+    {% for user in users %}
+        <li><a href = '/user/{{user[0]}}'>{{user[1]}} {{user[2]}}</a><br>
+    {% endfor %}
+    </ul>
+{% endif %}
