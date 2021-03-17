@@ -840,6 +840,13 @@ def photoRecommendations():
 	return render_template('photo_recommendations.html', photos=finalLst, empty=empty, base64=base64)
 
 
+@app.route('/pop_tags', methods=['GET'])
+def popTags():
+	cursor = conn.cursor()
+	cursor.execute('SELECT tag_name, COUNT(tag_name) FROM tag GROUP BY tag_name ORDER BY COUNT(tag_name) DESC ')
+	tags = fetchData(cursor)
+	return render_template('pop_tags.html', tags=tags)
+
 #default page
 @app.route("/", methods=['GET'])
 def hello():

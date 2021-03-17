@@ -1,0 +1,10 @@
+<li><a href='/'>Back to Home</a></li>
+
+<h3>Tags by popularity</h3>
+
+
+<ul>
+{% for tag in tags %}
+    <li><a href='/tag_all/{{tag[0]}}'>{{tag[0]}}</a></li>
+{% endfor %}
+</ul>
