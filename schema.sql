@@ -17,7 +17,8 @@ CREATE TABLE Friends
 friend2_id INTEGER NOT NULL,
 PRIMARY KEY (friend1_id, friend2_id),
 FOREIGN KEY (friend1_id) REFERENCES User(user_id) ON DELETE CASCADE,
-FOREIGN KEY (friend2_id) REFERENCES User(user_id) ON DELETE CASCADE);
+FOREIGN KEY (friend2_id) REFERENCES User(user_id) ON DELETE CASCADE,
+CHECK (friend1_id <> friend2_id));
 
 CREATE TABLE Album
 (album_id INTEGER,
@@ -44,11 +45,7 @@ owner_id INTEGER NOT NULL,
 photo_id INTEGER NOT NULL,
 FOREIGN KEY (owner_id) REFERENCES User(user_id) ON DELETE CASCADE, 
 FOREIGN KEY (photo_id) REFERENCES Photo(photo_id) ON DELETE CASCADE, 
-PRIMARY KEY (comment_id),
-CHECK (owner_id <> (
-	SELECT a.owner_id
-    FROM Photo p, Album a
-	WHERE p.album_id = a.album_id AND p.photo_id = photo_id)));
+PRIMARY KEY (comment_id));
 
 
 CREATE TABLE Photo_like
